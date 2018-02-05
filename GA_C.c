@@ -28,7 +28,7 @@ ORG* evolve_gen(ORG gen[]);      //returns the new generation after evolution
 int total_fitness_calculator(ORG gen[]);    //calculates total fitness of the generation
 ORG select_one(ORG gen[]);  //select one organism from the generating. Organisms with higher fitness have more chance of being selected
 ORG crossover(ORG par1,ORG par2);   //crosses the genes of two parents to create a new organism
-void copy_gen(ORG gen1[],ORG gen2[]);   //coping gen2 to gen2
+void copy_gen(ORG gen1[],ORG gen2[]);   //copying gen2 to gen2
 
 int main()
 {
