@@ -69,7 +69,7 @@ class Generation:
         for i in self.members:
             FitnessEach.append(i.fitness)
         self.totalFitness = sum(FitnessEach)
-        self.averageFitness = self.totalFitness / GEN_SIZE
+        self.averageFitness = float(self.totalFitness) / float(GEN_SIZE)
 
 def select_One(gen):
     stop_point = random.randint(0,1000000) % (gen.totalFitness+1)
@@ -84,6 +84,17 @@ def crossover(parent1, parent2):
     crossPoint = random.randint(0,100000)%GENE_NO
     temp=[]
     for i in range(GENE_NO):
+        mut_factor = random.randint(0, 199990) % 1000
+        if mut_factor == 0:
+            x = random.randint(0, 100000) % GENE_TYPES
+            if x == 0:
+                temp.append('A')
+            elif x == 1:
+                temp.append('B')
+            elif x == 2:
+                temp.append('C')
+            else:
+                temp.append('D')
         if i <= crossPoint:
             temp.append(parent1.gene[i])
         else:
