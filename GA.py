@@ -1,4 +1,5 @@
 import random
+import matplotlib.pyplot as plt
 GEN_SIZE = 100      #Number of organisms
 GENE_NO = 20        #Number of genes in each organisms
 GENE_TYPES = 4        #Types of genes
@@ -117,6 +118,9 @@ def stopGeneration(curGen):
         else:
             return 0
 
+generationList = []
+fitnessList = []
+
 ideal_org = Organism()
 ideal_org.initialise()      #initialising the ideal organism
 
@@ -130,6 +134,8 @@ count = 1
 
 while not stopGeneration(currentGen):
     print "Average fitness of generation %d is %f" % (count, currentGen.averageFitness)
+    generationList.append(count)
+    fitnessList.append(currentGen.averageFitness)
     prevGen.members = currentGen.members
     prevGen.averageFitness = currentGen.averageFitness
     prevGen.totalFitness = currentGen.totalFitness
@@ -137,3 +143,8 @@ while not stopGeneration(currentGen):
     count += 1
 
 print "Ideal organism achieved in generation", count + 1
+
+plt.plot(generationList, fitnessList, 'b-')
+plt.axis([0, count + 2, 0, 20])
+plt.show()
+    
